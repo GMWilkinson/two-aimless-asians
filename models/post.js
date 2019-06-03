@@ -6,10 +6,7 @@ const postSchema = new mongoose.Schema({
   dualAuthor: {type: Boolean, required: false, select: false},
   postImage: {type: String, required: false},
   blurb: {type: String, required: false},
-  paragraph: [{
-    text: String,
-    image: String
-  }],
+  text: {type: String, required: false},
   createdBy: {type: mongoose.Schema.ObjectId, ref: 'User'}
 })
 

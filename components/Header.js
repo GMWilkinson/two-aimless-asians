@@ -33,10 +33,11 @@ var Header = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
     _this.state = {
-      isOpen: false
+      isOpen: false,
+      collapsed: true
     };
     _this.handleLogout = _this.handleLogout.bind(_this);
-
+    _this.toggleNavbar = _this.toggleNavbar.bind(_this);
     return _this;
   }
 
@@ -45,6 +46,13 @@ var Header = function (_React$Component) {
     value: function toggle() {
       this.setState({
         isOpen: !this.state.isOpen
+      });
+    }
+  }, {
+    key: 'toggleNavbar',
+    value: function toggleNavbar() {
+      this.setState({
+        collapsed: !this.state.collapsed
       });
     }
   }, {
@@ -66,16 +74,16 @@ var Header = function (_React$Component) {
         { className: '' },
         _react2.default.createElement(
           _reactstrap.Navbar,
-          { color: 'light', light: true, expand: 'lg' },
+          { color: 'dark', dark: true, expand: 'lg' },
           _react2.default.createElement(
             _reactstrap.NavbarBrand,
-            { href: '/' },
+            { id: 'header', href: '/' },
             'Two Aimless Asians'
           ),
-          _react2.default.createElement(_reactstrap.NavbarToggler, { onClick: this.toggle }),
+          _react2.default.createElement(_reactstrap.NavbarToggler, { onClick: this.toggleNavbar }),
           _react2.default.createElement(
             _reactstrap.Collapse,
-            { isOpen: this.state.isOpen, navbar: true },
+            { isOpen: !this.state.collapsed, navbar: true },
             _react2.default.createElement(
               _reactstrap.Nav,
               { className: 'ml-auto', navbar: true },
@@ -117,12 +125,11 @@ var Header = function (_React$Component) {
                       'New Post'
                     )
                   ),
-                  _react2.default.createElement(_reactstrap.DropdownItem, { divider: true }),
                   _react2.default.createElement(
                     _reactstrap.DropdownItem,
                     null,
                     _react2.default.createElement(
-                      _reactstrap.NavLink,
+                      'div',
                       { onClick: this.handleLogout, className: '' },
                       'Logout'
                     )

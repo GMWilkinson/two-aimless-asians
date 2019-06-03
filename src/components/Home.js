@@ -17,19 +17,17 @@ class Home extends React.Component {
 
   render() {
     return (
-      <main className="">
+      <main className="main">
         <section className="">
           <article className="">
-            <p>Home page text</p>
             {this.state.post && this.state.post.map(
               post =>
                 <div key={post._id}>
-                  <PostBox key={post._id}
+                  <PostBox
                     title={post.title}
                     text={post.paragraph}
                     author={post.author}
                     postId={post._id}
-                    image={post.image}
                   />
                 </div>
             )}

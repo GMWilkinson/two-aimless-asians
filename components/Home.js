@@ -52,28 +52,22 @@ var Home = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'main',
-        { className: '' },
+        { className: 'main' },
         _react2.default.createElement(
           'section',
           { className: '' },
           _react2.default.createElement(
             'article',
             { className: '' },
-            _react2.default.createElement(
-              'p',
-              null,
-              'Home page text'
-            ),
             this.state.post && this.state.post.map(function (post) {
               return _react2.default.createElement(
                 'div',
                 { key: post._id },
-                _react2.default.createElement(_PostBox2.default, { key: post._id,
+                _react2.default.createElement(_PostBox2.default, {
                   title: post.title,
                   text: post.paragraph,
                   author: post.author,
-                  postId: post._id,
-                  image: post.image
+                  postId: post._id
                 })
               );
             })

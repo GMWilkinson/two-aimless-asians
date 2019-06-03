@@ -52,10 +52,23 @@ var PostShow = function (_React$Component) {
       });
     }
   }, {
+    key: 'seperatePara',
+    value: function seperatePara(text) {
+      var y = text.toString();
+      var next = y.split('(newpara)');
+      console.log('seperatePara text', text, next);
+      return next.map(function (para) {
+        return _react2.default.createElement(
+          'p',
+          { key: para },
+          para
+        );
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var post = this.state.post;
-      console.log('what is', post);
       return _react2.default.createElement(
         'section',
         { className: '' },
@@ -64,7 +77,7 @@ var PostShow = function (_React$Component) {
           { className: '' },
           _react2.default.createElement(
             'div',
-            { className: 'post-box' },
+            { className: 'post-show' },
             _react2.default.createElement('img', { src: _cocktailFlower2.default }),
             _react2.default.createElement(
               'h2',
@@ -72,21 +85,18 @@ var PostShow = function (_React$Component) {
               post.title
             )
           ),
-          post.paragraph.map(function (para) {
-            return _react2.default.createElement(
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
               'div',
-              { key: para._id },
-              _react2.default.createElement(
-                'p',
-                { className: 'post-text' },
-                para.text
-              )
-            );
-          }),
+              { className: 'post-text' },
+              this.seperatePara(post.text)
+            )
+          ),
           _react2.default.createElement(
             'h4',
-            { className: '' },
-            'Written by ',
+            { className: 'written-by' },
             post.author
           )
         ) : _react2.default.createElement(

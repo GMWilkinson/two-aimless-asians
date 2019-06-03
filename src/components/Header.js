@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { isAuthenticated, decodeToken, deleteToken } from '../lib/auth'
 import {
   Collapse,
+  Button,
   Navbar,
   NavbarToggler,
   NavbarBrand,
@@ -19,15 +20,22 @@ class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: false
+      isOpen: false,
+      collapsed: true
     }
     this.handleLogout = this.handleLogout.bind(this)
-
+    this.toggleNavbar = this.toggleNavbar.bind(this)
   }
 
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
+    })
+  }
+
+  toggleNavbar() {
+    this.setState({
+      collapsed: !this.state.collapsed
     })
   }
 
@@ -43,10 +51,10 @@ class Header extends React.Component {
   render() {
     return (
       <nav className="">
-        <Navbar color="light" light expand="lg">
-          <NavbarBrand href="/">Two Aimless Asians</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+        <Navbar color="dark" dark expand="lg">
+          <NavbarBrand id="header" href="/">Two Aimless Asians</NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} />
+          <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink to="/new" className="nav-links">Coco</NavLink>
@@ -55,20 +63,19 @@ class Header extends React.Component {
                 <NavLink to="/new" className="nav-links">Rice</NavLink>
               </NavItem>
               {isAuthenticated() &&
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Editor
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    <Link to="/new">New Post</Link>
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    <NavLink onClick={this.handleLogout} className="">Logout</NavLink>
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Editor
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <Link to="/new">New Post</Link>
+                </DropdownItem>
+                <DropdownItem>
+                  <div onClick={this.handleLogout} className="">Logout</div>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
               }
             </Nav>
           </Collapse>

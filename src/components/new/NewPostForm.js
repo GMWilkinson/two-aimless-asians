@@ -9,7 +9,7 @@ function NewPostForm({ handleChange, handleSubmit }) {
     <form className="" onSubmit={handleSubmit}>
       <FormInput name="title" type="text" handleChange={handleChange} />
       <FormInput name="author" type="text" handleChange={handleChange} />
-      <FormTextarea name="text" type="text" handleChange={handleChange} />
+      <FormTextarea name="text" type="text" handleChange={handleChange} /> 
       <FormInput className="blurb-input" name="blurb" type="text" handleChange={handleChange} />
       <FormInput name="image" type="text" handleChange={handleChange} />
       <FormButton text="Create Post"/>
